@@ -18,8 +18,8 @@ jobs:
         uses: actions/checkout@v6.1.0
       - name: Setup Java JDK
         uses: actions/setup-java@v6.1.0
-        java-version: '17'
-        java-distribution: 'Temurin
+        with:
+          java-version: '17'
+          java-distribution: 'Temurin'
       - name: Construction du package jar
         run: mvn clean package -DskipTests
-  
