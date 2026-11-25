@@ -20,6 +20,6 @@ jobs:
         uses: actions/setup-java@v6.1.0
         with:
           java-version: '17'
-          java-distribution: 'Temurin'
+          distribution: 'Temurin'
       - name: Construction du package jar
         run: mvn clean package -DskipTests
