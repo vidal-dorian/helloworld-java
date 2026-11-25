@@ -1,0 +1,25 @@
+name: build-test-deploy
+
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  DEPLOY_ENV: 'production'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.1.0
+      - name: Setup Java JDK
+        uses: actions/setup-java@v6.1.0
+        java-version: '17'
+        java-distribution: 'Temurin
+      - name: Construction du package jar
+        run: mvn clean package -DskipTests
+  
