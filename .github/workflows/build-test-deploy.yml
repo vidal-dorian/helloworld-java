@@ -8,6 +8,7 @@ on:
 
 env:
   DEPLOY_ENV: 'production'
+  MAVEN_OPTS: "-Dmaven.repo.local=${{github.workspace}}/.m2/repository"
 
 jobs:
   build:
@@ -21,5 +22,11 @@ jobs:
         with:
           java-version: '17'
           distribution: temurin
+      - name: Mise en cache de Maven
+        uses: actions/cache@v6.1.0
+        with:
+          path: ${{github.workspace}}/.m2/repository"
+          key: ${{runner.os}}-maven-${{hashFiles('**/pom.xml')}}
       - name: Construction du package jar
         run: mvn clean package -DskipTests
+            
